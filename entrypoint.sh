@@ -68,8 +68,50 @@ if [ ! -f "/minecraft/config/whitelist.json" ]; then
   echo "[]" >> /minecraft/config/whitelist.json
 fi
 
-if [ ! -f "/minecraft/config/ops.json" ]; then
-  echo "[]" >> /minecraft/config/ops.json
+if [ ! -f "/minecraft/config/bukkit.yml" ]; then
+  cat <<EOF > /minecraft/config/bukkit.yml
+    # This is the main configuration file for Bukkit.
+    # As you can see, there's actually not that much to configure without any plugins.
+    # For a reference for any variable inside this file, check out the Bukkit Wiki at
+    # https://www.spigotmc.org/go/bukkit-yml
+    #
+    # If you need help on this file, feel free to join us on irc or leave a message
+    # on the forums asking for advice.
+    #
+    # IRC: #spigot @ irc.spi.gt
+    #    (If this means nothing to you, just go to https://www.spigotmc.org/go/irc )
+    # Forums: https://www.spigotmc.org/
+    # Bug tracker: https://www.spigotmc.org/go/bugs
+    
+    
+    settings:
+      allow-end: true
+      warn-on-overload: true
+      permissions-file: permissions.yml
+      update-folder: update
+      plugin-profiling: false
+      connection-throttle: 4000
+      query-plugins: true
+      deprecated-verbose: default
+      shutdown-message: Server closed
+      minimum-api: none
+    spawn-limits:
+      monsters: 70
+      animals: 10
+      water-animals: 5
+      water-ambient: 20
+      ambient: 15
+    chunk-gc:
+      period-in-ticks: 600
+    ticks-per:
+      animal-spawns: 400
+      monster-spawns: 1
+      water-spawns: 1
+      water-ambient-spawns: 1
+      ambient-spawns: 1
+      autosave: 6000
+    aliases: now-in-commands.yml
+EOF
 fi
 
 ln -s /minecraft/config/banned-ips.json /minecraft/banned-ips.json
@@ -77,6 +119,7 @@ ln -s /minecraft/config/banned-players.json /minecraft/banned-players.json
 ln -s /minecraft/config/usercache.json /minecraft/usercache.json
 ln -s /minecraft/config/whitelist.json /minecraft/whitelist.json
 ln -s /minecraft/config/ops.json /minecraft/ops.json
+ln -s /minecraft/config/bukkit.yml /minecraft/bukkit.yml
 
 # Configure the properties
 # Echo the file as it has embedded environment variables

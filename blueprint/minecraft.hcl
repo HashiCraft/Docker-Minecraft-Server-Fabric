@@ -9,58 +9,68 @@ container "minecraft" {
   }
 
   image {
-    name = "hashicraft/minecraft:v1.16.4-fabric"
+    name = "hashicraft/minecraft:v1.18.1-fabric"
   }
 
   volume {
-    source = "./mc_server/mods"
+    source      = "./mc_server/mods"
     destination = "/minecraft/mods"
   }
 
   volume {
-    source = "./mc_server/plugins"
+    source      = "./mc_server/plugins"
     destination = "/minecraft/plugins"
   }
-  
+
   volume {
-    source = "./mc_server/world"
+    source      = "./mc_server/world"
     destination = "/minecraft/world"
   }
-  
+
   volume {
-    source = "./mc_server/config"
+    source      = "./mc_server/worlds"
+    destination = "/minecraft/worlds"
+  }
+
+  volume {
+    source      = "./mc_server/config"
     destination = "/minecraft/config"
   }
 
   port {
-    local = 25565
+    local  = 25565
     remote = 25565
-    host = 25565
+    host   = 25565
   }
-  
+
   port {
-    local = 27015
+    local  = 27015
     remote = 27015
-    host = 27015
+    host   = 27015
   }
 
   env {
-    key = "MINECRAFT_MOTD"
+    key   = "JAVA_MEMORY"
+    value = "8G"
+  }
+
+  env {
+    key   = "MINECRAFT_MOTD"
     value = "HashiCraft"
   }
-  
+
   env {
-    key = "WHITELIST_ENABLED"
+    key   = "WHITELIST_ENABLED"
     value = "false"
   }
-  
+
   env {
-    key = "RCON_PASSWORD"
+    key   = "RCON_PASSWORD"
     value = "password"
   }
-  
+
   env {
-    key = "RCON_ENABLED"
+    key   = "RCON_ENABLED"
     value = "true"
   }
 }

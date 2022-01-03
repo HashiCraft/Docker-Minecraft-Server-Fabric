@@ -1,17 +1,17 @@
-FROM openjdk:8
+FROM openjdk:17-slim
 
 WORKDIR /minecraft
 
-RUN apt-get update && apt-get install -y libfreetype6
+RUN apt-get update && apt-get install -y libfreetype6 curl
 
 # Install rcon
-RUN curl -L -o rcon-cli.tar.gz https://github.com/itzg/rcon-cli/releases/download/1.4.8/rcon-cli_1.4.8_linux_amd64.tar.gz && \
+RUN curl -L -o rcon-cli.tar.gz https://github.com/itzg/rcon-cli/releases/download/1.5.1/rcon-cli_1.5.1_linux_amd64.tar.gz && \
   tar -xzf rcon-cli.tar.gz && \
   rm rcon-cli.tar.gz && \
   mv rcon-cli /usr/local/bin
 
 # Setup the server
-RUN curl -L -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.7.4/fabric-installer-0.7.4.jar && \
+RUN curl -L -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar && \
   java -jar fabric-installer.jar server -downloadMinecraft
 
 # Copy the signed eula
@@ -35,5 +35,30 @@ ENV DIFFICULTY easy
 ENV SPAWN_MONSTERS false
 ENV SPAWN_ANIMALS false
 ENV SPAWN_NPCS false
+
+ENV LEVEL_TYPE default
+ENV PVP false
+ENV BROADCAST_CONSOLE_TO_OPS true
+ENV SPAWN_PROTECTION 16
+ENV MAX_TICK_TIME 60000
+ENV FORCE_GAMEMODE true
+#ENV GENERATOR_SETTINGS
+ENV OP_PERMISSION_LEVEL 4
+ENV SNOOPER_ENABLED true
+ENV HARDCORE false
+ENV ENABLE_COMMAND_BLOCK false
+ENV MAX_PLAYERS 10000
+ENV NETWORK_COMPRESSION_THRESHOLD 256
+#ENV RESOURCE_PACK_SHA1
+ENV MAX_WORLD_SIZE 29999984
+#ENV SERVER_IP
+ENV ALLOW_FLIGHT true
+ENV LEVEL_NAME world
+ENV VIEW_DISTANCE 10
+ENV GENERATE_STRUCTURES true
+ENV ONLINE_MODE true
+ENV MAX_BUILD_HEIGHT 256
+#ENV LEVEL_SEED
+ENV PREVENT_PROXY_CONNECTION false
 
 ENTRYPOINT [ "/minecraft/entrypoint.sh" ]
