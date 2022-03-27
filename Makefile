@@ -1,5 +1,5 @@
 DOCKER_NAME=hashicraft/minecraft
-DOCKER_VERSION=v1.18.1-fabric
+DOCKER_VERSION=v1.18.2-fabric
 
 build:
 	docker build -t ${DOCKER_NAME}:${DOCKER_VERSION} .

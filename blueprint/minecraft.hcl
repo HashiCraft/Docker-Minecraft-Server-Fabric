@@ -9,7 +9,7 @@ container "minecraft" {
   }
 
   image {
-    name = "hashicraft/minecraft:v1.18.1-fabric"
+    name = "hashicraft/minecraft:v1.18.2-fabric"
   }
 
   volume {
