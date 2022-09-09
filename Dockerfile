@@ -11,8 +11,8 @@ RUN curl -L -o rcon-cli.tar.gz https://github.com/itzg/rcon-cli/releases/downloa
   mv rcon-cli /usr/local/bin
 
 # Setup the server
-RUN curl -L -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.10.2/fabric-installer-0.10.2.jar && \
-  java -jar fabric-installer.jar server -downloadMinecraft -mcversion 1.18.2
+RUN curl -L -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.11.1/fabric-installer-0.11.1.jar && \
+  java -jar fabric-installer.jar server -downloadMinecraft -mcversion 1.19.2
 
 # Copy the signed eula
 COPY ./eula.txt eula.txt
