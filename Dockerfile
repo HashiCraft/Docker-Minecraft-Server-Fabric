@@ -1,18 +1,18 @@
-FROM openjdk:17-slim
+FROM openjdk:21-slim
 
 WORKDIR /minecraft
 
 RUN apt-get update && apt-get install -y libfreetype6 curl wget
 
 # Install rcon
-RUN curl -L -o rcon-cli.tar.gz https://github.com/itzg/rcon-cli/releases/download/1.6.2/rcon-cli_1.6.2_linux_amd64.tar.gz && \
+RUN curl -L -o rcon-cli.tar.gz https://github.com/itzg/rcon-cli/releases/download/1.6.8/rcon-cli_1.6.8_linux_amd64.tar.gz && \
   tar -xzf rcon-cli.tar.gz && \
   rm rcon-cli.tar.gz && \
   mv rcon-cli /usr/local/bin
 
 # Setup the server
-RUN curl -L -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.11.2/fabric-installer-0.11.2.jar && \
-  java -jar fabric-installer.jar server -downloadMinecraft -mcversion 1.20.1
+RUN curl -L -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar && \
+  java -jar fabric-installer.jar server -downloadMinecraft -mcversion 1.21.1
 
 # Copy the signed eula
 COPY ./eula.txt eula.txt
