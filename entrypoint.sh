@@ -114,12 +114,12 @@ if [ ! -f "/minecraft/config/bukkit.yml" ]; then
 EOF
 fi
 
-ln -s /minecraft/config/banned-ips.json /minecraft/banned-ips.json
-ln -s /minecraft/config/banned-players.json /minecraft/banned-players.json
-ln -s /minecraft/config/usercache.json /minecraft/usercache.json
-ln -s /minecraft/config/whitelist.json /minecraft/whitelist.json
-ln -s /minecraft/config/ops.json /minecraft/ops.json
-ln -s /minecraft/config/bukkit.yml /minecraft/bukkit.yml
+[ -f /minecraft/banned-ips.json ] || ln -s /minecraft/config/banned-ips.json /minecraft/banned-ips.json
+[ -f /minecraft/banned-players.json ] || ln -s /minecraft/config/banned-players.json /minecraft/banned-players.json
+[ -f /minecraft/usercache.json ] || ln -s /minecraft/config/usercache.json /minecraft/usercache.json
+[ -f /minecraft/whitelist.json ] || ln -s /minecraft/config/whitelist.json /minecraft/whitelist.json
+[ -f /minecraft/ops.json ] || ln -s /minecraft/config/ops.json /minecraft/ops.json
+[ -f /minecraft/bukkit.yml ] || ln -s /minecraft/config/bukkit.yml /minecraft/bukkit.yml
 
 # Configure the properties
 # Echo the file as it has embedded environment variables
