@@ -1,18 +1,23 @@
 FROM openjdk:21-slim
 
+# Build arguments for version parameterization
+ARG MINECRAFT_VERSION=1.21.1
+ARG FABRIC_INSTALLER_VERSION=1.0.1
+ARG RCON_CLI_VERSION=1.6.8
+
 WORKDIR /minecraft
 
 RUN apt-get update && apt-get install -y libfreetype6 curl wget
 
 # Install rcon
-RUN curl -L -o rcon-cli.tar.gz https://github.com/itzg/rcon-cli/releases/download/1.6.8/rcon-cli_1.6.8_linux_amd64.tar.gz && \
+RUN curl -L -o rcon-cli.tar.gz https://github.com/itzg/rcon-cli/releases/download/${RCON_CLI_VERSION}/rcon-cli_${RCON_CLI_VERSION}_linux_amd64.tar.gz && \
   tar -xzf rcon-cli.tar.gz && \
   rm rcon-cli.tar.gz && \
   mv rcon-cli /usr/local/bin
 
 # Setup the server
-RUN curl -L -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar && \
-  java -jar fabric-installer.jar server -downloadMinecraft -mcversion 1.21.1
+RUN curl -L -o fabric-installer.jar https://maven.fabricmc.net/net/fabricmc/fabric-installer/${FABRIC_INSTALLER_VERSION}/fabric-installer-${FABRIC_INSTALLER_VERSION}.jar && \
+  java -jar fabric-installer.jar server -downloadMinecraft -mcversion ${MINECRAFT_VERSION}
 
 # Copy the signed eula
 COPY ./eula.txt eula.txt

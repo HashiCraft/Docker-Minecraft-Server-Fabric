@@ -255,7 +255,7 @@ docker run \
   -e "RCON_ENABLED=true" \
   -e "RCON_PASSWORD=password" \
   -e "WORLD_BACKUP=https://github.com/HashiCraft/digital-ocean-deploy/releases/download/v0.0.0/world.tar.gz" \
-  hashicraft/minecraft:v1.16.3
+  hashicraft/minecraft:v1.21.1-fabric
 ```
 
 ## Running with Shipyard
